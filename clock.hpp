@@ -31,7 +31,8 @@ class Period
 
 	private:
 	time Time;
-
+	bool clockRunning;
+	
 	score homeScore, awayScore;
 	// score for this period, so we can have period by period
 	// stats
@@ -39,13 +40,15 @@ class Period
 
 	public:
 	void Update(time deltat);
-	time getClockTime();
+	time getPeriodTime();
 	bool periodOver();
+	
+	bool clockIsRunning();
+
 	void stopClock();
 	// generic one, regardless of what event triggered the clock to stop
 	void startClock();
 	String getClockOutput();
-	String getClockOutput(time deltat);
 
 	~Period();
 };
