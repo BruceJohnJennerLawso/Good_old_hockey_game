@@ -91,3 +91,18 @@ String Period::getClockOutput()
 {
 	
 }
+
+Period::~Period()
+{
+}
+
+
+// Game Class /////////////////////////////////////////////////////////////////
+
+
+
+Game::Game(int period_minutes)
+{
+}
+
+
