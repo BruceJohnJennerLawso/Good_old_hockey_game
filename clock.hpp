@@ -22,13 +22,20 @@ typedef short int score;
 
 enum player {home, away};
 
-class gameClock
+class Period
 {
 	public:
-	gameClock(time init_time, int period_minutes);
+	Period(time init_time, int period_minutes);
+	Period(int period_minutes);
+
 
 	private:
 	time Time;
+
+	score homeScore, awayScore;
+	// score for this period, so we can have period by period
+	// stats
+	// slightly misleading name here I guess
 
 	public:
 	void Update(time deltat);
@@ -40,22 +47,16 @@ class gameClock
 	String getClockOutput();
 	String getClockOutput(time deltat);
 
-	~gameClock();
+	~Period();
 };
 
 class Game
 {	public:
-	
 	Game(int period_minutes);
 	
 	private:
-	std::vector<gameClock> Periods;
-	// dont even know if vector is gonna work here, we'll see
-	// its not a problem for regular games, but we can have arbitrary
-	// number of overtimes, which complicates things
-
-	score homeScore, awayScore;
-
+	Period * periods;		
+	
 	public:
 	void Update(time deltat);
 	void Goal(player scoredBy);
