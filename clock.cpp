@@ -101,8 +101,19 @@ Period::~Period()
 
 
 
-Game::Game(int period_minutes)
+Game::Game(int period_minutes): periodLength(period_minutes)
 {
 }
 
+void Game::Update(time deltat)
+{	
+}
+
+void Game::Goal(player scoredBy)
+{
+}
+
+Game::~Game()
+{
+}
 

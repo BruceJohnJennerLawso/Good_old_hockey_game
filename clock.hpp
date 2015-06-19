@@ -58,11 +58,13 @@ class Game
 	Game(int period_minutes);
 	
 	private:
-	Period * periods;		
+	Period * periods;
+	int periodLength;		
 	
 	public:
 	void Update(time deltat);
 	void Goal(player scoredBy);
+	~Game();
 
 };
 
