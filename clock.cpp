@@ -89,6 +89,32 @@ void Period::startClock()
 
 String Period::getClockOutput()
 {
+	#ifdef PRESEASON
+		// ahh, we need something to test here
+		
+		int minutes = 0;
+		
+		int timeval = Time;
+		
+		if(timeval >= 60)
+		{	while(timeval>= 60)
+			{	minutes += 1;
+				timeval -= 60;
+			}
+		}
+		std::string output = std::to_string(minutes);
+		output.append(":");
+		if(timeval < 10)
+		{	// tack on leading 0 so it looks right
+			output.append("0");
+		}
+		output.append(std::to_string(timeval));
+		return output;
+	#elif
+		// real deal here running on the arduino, so we need to properly
+		// use the arduino string type provided for us
+		
+	#endif
 	
 }
 
@@ -103,6 +129,15 @@ Period::~Period()
 
 Game::Game(int period_minutes): periodLength(period_minutes)
 {
+	periods = new Period[3]
+	{ 
+		{	(period_minutes)
+		},
+		{	(period_minutes)
+		},
+		{	(period_minutes)
+		}
+	};
 }
 
 void Game::Update(seconds deltat)

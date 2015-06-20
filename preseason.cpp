@@ -13,7 +13,9 @@
 #include "clock.hpp"
 
 int main()
-{	std::cout << "Hello Hockey!" << std::endl;
+{	
+	Period firstPeriod(5);
+	std::cout << firstPeriod.getClockOutput() << std::endl;
 	return 0;
 }
 
