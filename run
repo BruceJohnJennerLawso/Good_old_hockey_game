@@ -1,0 +1,5 @@
+#!/bin/bash
+
+./preseason
+
+exit 0

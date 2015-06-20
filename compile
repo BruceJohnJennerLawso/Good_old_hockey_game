@@ -1,0 +1,5 @@
+#!/bin/bash
+
+g++ -c -std=c++0x clock.cpp preseason.cpp 
+
+exit 0

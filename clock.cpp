@@ -24,7 +24,7 @@ bool Flip(bool input)
 
 // Period class ///////////////////////////////////////////////////////////////
 
-Period::Period(time init_time, int period_minutes)
+Period::Period(seconds init_time, int period_minutes)
 {	if(init_time < (period_minutes*60))
 	{	Time = init_time;
 	}
@@ -46,7 +46,7 @@ Period::Period(int period_minutes)
 	clockRunning = false;
 }
 
-void Period::Update(time deltat)
+void Period::Update(seconds deltat)
 {	if(clockRunning == true)
 	{
 		Time -= deltat;
@@ -60,7 +60,7 @@ void Period::Update(time deltat)
 }
 
 
-time Period::getPeriodTime()
+seconds Period::getPeriodTime()
 {
 	return Time;
 }
@@ -105,7 +105,7 @@ Game::Game(int period_minutes): periodLength(period_minutes)
 {
 }
 
-void Game::Update(time deltat)
+void Game::Update(seconds deltat)
 {	
 }
 

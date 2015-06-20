@@ -14,23 +14,34 @@
 #ifndef ClOcK
 #define ClOcK
 
-#include "Arduino.h"
+#define PRESEASON
+
+
+#ifdef PRESEASON
+
+	#include <string>
+	typedef std::string String;
+#else
+	#include "Arduino.h"
+#endif
+
 #include <vector>
 
-typedef double time;
+typedef double seconds;
 typedef short int score;
+
 
 enum player {home, away};
 
 class Period
 {
 	public:
-	Period(time init_time, int period_minutes);
+	Period(seconds init_time, int period_minutes);
 	Period(int period_minutes);
 
 
 	private:
-	time Time;
+	seconds Time;
 	bool clockRunning;
 	
 	score homeScore, awayScore;
@@ -39,8 +50,8 @@ class Period
 	// slightly misleading name here I guess
 
 	public:
-	void Update(time deltat);
-	time getPeriodTime();
+	void Update(seconds deltat);
+	seconds getPeriodTime();
 	bool periodOver();
 	
 	bool clockIsRunning();
@@ -62,7 +73,7 @@ class Game
 	int periodLength;		
 	
 	public:
-	void Update(time deltat);
+	void Update(seconds deltat);
 	void Goal(player scoredBy);
 	~Game();
 
