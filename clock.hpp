@@ -9,7 +9,8 @@
 
 //#include "Headers.hpp"
 //#include "Source.cpp"
-
+#include <stdlib.h>
+// why malloc why
 
 #ifndef ClOcK
 #define ClOcK
@@ -25,8 +26,9 @@
 	#include "Arduino.h"
 #endif
 
-#include <stdlib.h>
-// why malloc why
+
+bool Flip(bool input);
+
 
 typedef double seconds;
 typedef short int score;

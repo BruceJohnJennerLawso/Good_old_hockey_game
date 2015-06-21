@@ -18,9 +18,6 @@ Game::Game(int period_minutes):
 
 periodLength(period_minutes), numberOfPeriods(3), gameOver(false)	 
 {
-	periods = malloc(3*sizeof(Period));
-	// lets just test this and see what happens
-	
 	// ah dammit, no new in avr-gcc
 }
 
