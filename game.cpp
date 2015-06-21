@@ -19,6 +19,18 @@ Game::Game(int period_minutes):
 periodLength(period_minutes), numberOfPeriods(3), gameOver(false)	 
 {
 	// ah dammit, no new in avr-gcc
+	
+	// or on second thought apparently it does...
+	periods = new Period[3]
+	{
+		{	(period_minutes)
+		},
+		{	(period_minutes)
+		},
+		{	(period_minutes)
+		}
+		
+	};
 }
 
 int Game::getNumberOfPeriods()
