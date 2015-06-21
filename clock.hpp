@@ -25,7 +25,8 @@
 	#include "Arduino.h"
 #endif
 
-#include <vector>
+#include <stdlib.h>
+// why malloc why
 
 typedef double seconds;
 typedef short int score;
@@ -66,43 +67,6 @@ class Period
 	~Period();
 };
 
-class Game
-{	public:
-	Game(int period_minutes);
-	
-	private:
-	Period * periods;
-	int periodLength;
-	
-	int numberOfPeriods;
-	
-	int currentPeriod;
-	// use 1, 2, 3, here, for more readable to hockey fans than the
-	// programming convention of starting at 0		
-	
-	bool gameOver;
-	
-	public:
-	bool inOvertime();
-	void Update(seconds deltat);
-	
-	bool newOvertime();
-	// use return value to catch any "cant allocate more memory"
-	// exceptions
-	
-	// maybe we can get away with using exceptions here if we are
-	// very careful
-	
-	void Goal(player scoredBy);
-	score homeScore();
-	score awayScore();
-	
-	bool gameFinished();
-	
-	void gameIsOver();
-	~Game();
-
-};
 
 
 

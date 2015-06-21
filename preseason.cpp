@@ -10,7 +10,7 @@
 //#include "Headers.hpp"
 //#include "Source.cpp"
 #include <iostream>
-#include "clock.hpp"
+#include "game.hpp"
 
 int main()
 {	

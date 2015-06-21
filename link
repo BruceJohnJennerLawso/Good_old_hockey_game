@@ -1,5 +1,5 @@
 #!/bin/bash
 
-g++ preseason.o clock.o -o preseason
+g++ preseason.o game.o clock.o -o preseason
 
 exit 0
