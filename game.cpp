@@ -16,8 +16,10 @@
 
 Game::Game(int period_minutes): 
 
-periodLength(((seconds)period_minutes)*60), numberOfPeriods(3), gameOver(false)	 
-{
+periodLength(((seconds)period_minutes)*60), numberOfPeriods(3), gameOver(false),
+currentPeriod(1)
+{	std::cout << "Constructing Game::Game(" << period_minutes << ")";
+	std::cout << std::endl;
 	// ah dammit, no new in avr-gcc
 	
 	// or on second thought apparently it does...
@@ -31,6 +33,7 @@ periodLength(((seconds)period_minutes)*60), numberOfPeriods(3), gameOver(false)
 		}
 		
 	};
+	std::cout << "finished constructing Game::Game" << std::endl;
 }
 
 int Game::getNumberOfPeriods()
@@ -83,7 +86,7 @@ void Game::Update(seconds deltat)
 		}
 	}
 	else
-	{	periods[currentPeriod].Update(deltat);
+	{	periods[currentPeriod -1].Update(deltat);
 	}
 }
 
@@ -105,7 +108,8 @@ bool Game::newOvertime()
 
 
 void Game::startClock()
-{	periods[currentPeriod].startClock();
+{	
+	periods[currentPeriod -1].startClock();
 }
 
 void Game::Goal(player scoredBy)
