@@ -1,16 +1,17 @@
 /*********************
+hockeyTonight.pde
 
-Example code for the Adafruit RGB Character LCD Shield and Library
-
-This code displays text on the shield, and also reads the buttons on the keypad.
-When a button is pressed, the backlight changes color.
-
+Testing out the time clock structures defined in game.hpp and
+up. Not a full demo, as more components will need to be added
+before the project is truly done
 **********************/
 
 // include the library code:
 #include <Wire.h>
 #include <Adafruit_MCP23017.h>
 #include <Adafruit_RGBLCDShield.h>
+#include <game.hpp>
+
 
 // The shield uses the I2C SCL and SDA pins. On classic Arduinos
 // this is Analog 4 and 5 so you can't use those for analogRead() anymore
@@ -37,15 +38,35 @@ void setup()
 	// Print a message to the LCD. We track how long it takes since
 	// this library has been optimized a bit and we're proud of it :)
 	int time = millis();
-	lcd.print("Hello, world!");
+	lcd.print("Table Hockey Game");
 	time = millis() - time;
-	Serial.print("Took "); Serial.print(time); Serial.println(" ms");
+	Serial.print("Initialized in  "); Serial.print(time); Serial.println(" ms");
 	lcd.setBacklight(WHITE);
+	delay(5000);
+	// hold this open five secs, so we can see the startup message
+	// before we get going
 }
+
+Game hockeyGame(5);
+// standard five minute long periods
+
+// I think its because the original clock that came with the game used
+// 5 min long periods
+
+float deltat = 0;
+float timeElapsed = 0;
 
 uint8_t i=0;
 void loop()
 {
+	hockeyGame.Update(deltat);
+
+	lcd setCursor(7,0);
+	lcd.print(hockeyGame.getClockOutput());
+	
+
+	lcd.print(hockeyGame.getHomeScore());
+
 	// set the cursor to column 0, line 1
 	// (note: line 1 is the second row, since counting begins with 0):
 	lcd.setCursor(0, 1);
@@ -79,9 +100,11 @@ void loop()
 			lcd.setBacklight(TEAL);
 		}
 		if (buttons & BUTTON_SELECT)
-		{
+		{	// we'll treat this as a clock toggle
 			lcd.print("SELECT ");
 			lcd.setBacklight(VIOLET);
 		}
 	}
+	deltat = ((millis()-timeElapsed)/1000);
+	timeElapsed = millis();
 }

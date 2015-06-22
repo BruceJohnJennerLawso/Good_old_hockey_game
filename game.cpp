@@ -40,6 +40,10 @@ int Game::getNumberOfPeriods()
 {	return numberOfPeriods;
 }
 
+String Game::getClockOutput()
+{	return periods[currentPeriod -1].getClockOutput();
+}
+
 bool Game::inOvertime()
 {	if(currentPeriod > 3)
 	{	return true;

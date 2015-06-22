@@ -34,6 +34,10 @@ class Game
 	public:
 	
 	int getNumberOfPeriods();
+
+	String getClockOutput();
+
+
 	
 	bool inOvertime();
 	void Update(seconds deltat);
