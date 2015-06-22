@@ -15,7 +15,16 @@
 int main()
 {	
 	Period firstPeriod(5);
+	firstPeriod.Faceoff();
+	
+	firstPeriod.Update(125.4);
+	
+	Period secondPeriod(5);
+	secondPeriod = firstPeriod;
+	secondPeriod.Update(1.0);
+	
 	std::cout << firstPeriod.getClockOutput() << std::endl;
+	std::cout << secondPeriod.getClockOutput() << std::endl;	
 	return 0;
 }
 

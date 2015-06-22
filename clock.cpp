@@ -56,6 +56,18 @@ Period::Period(int period_minutes)
 	clockRunning = false;
 }
 
+
+Period Period::operator= (const Period p)
+{	Time = p.Time;
+	clockRunning = p.clockRunning;
+	
+	homeScore = p.homeScore;
+	awayScore = p.awayScore;
+	
+	return (*this);		
+}
+
+
 void Period::Update(seconds deltat)
 {	if(clockRunning == true)
 	{
@@ -80,6 +92,11 @@ bool Period::periodOver()
 	{	return true;
 	}
 	return false;
+}
+
+void Period::Faceoff()
+{
+	this->startClock();
 }
 
 void Period::stopClock()

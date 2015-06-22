@@ -45,6 +45,8 @@ class Period
 	Period(int period_minutes);
 
 
+	Period operator = (const Period p);	
+
 	private:
 	seconds Time;
 	bool clockRunning;
@@ -58,6 +60,10 @@ class Period
 	void Update(seconds deltat);
 	seconds getPeriodTime();
 	bool periodOver();
+	
+	void Faceoff();
+	// as a true canadian, yes I hear a whistle in my head when typing
+	// this
 	
 	bool clockIsRunning();
 
