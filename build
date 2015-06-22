@@ -1,0 +1,6 @@
+#!/bin/bash
+
+./compile
+./link
+
+exit 0

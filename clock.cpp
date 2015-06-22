@@ -32,7 +32,18 @@ bool Equal(score team1, score team2)
 }
 
 
-// Period class ///////////////////////////////////////////////////////////////
+// Period class ////////////////////////////////////////////////////////////////
+
+Period::Period()
+{
+	Time = -1;
+	// flag that something is wrong since we are constructed without
+	// sufficient arguments using the default constructor
+	homeScore = 0;
+	awayScore = 0;
+	clockRunning = false;
+	periodStarted = false;
+}
 
 Period::Period(seconds init_time, int period_minutes)
 {	if(init_time < (period_minutes*60))
@@ -46,6 +57,7 @@ Period::Period(seconds init_time, int period_minutes)
 	homeScore = 0;
 	awayScore = 0;
 	clockRunning = false;
+	periodStarted = false;
 }
 
 Period::Period(int period_minutes)
@@ -54,6 +66,7 @@ Period::Period(int period_minutes)
 	homeScore = 0;
 	awayScore = 0;
 	clockRunning = false;
+	periodStarted = false;
 }
 
 
@@ -67,6 +80,9 @@ Period Period::operator= (const Period p)
 	return (*this);		
 }
 
+void Period::setPeriodTime(seconds new_time)
+{	Time = new_time;
+}
 
 void Period::Update(seconds deltat)
 {	if(clockRunning == true)
@@ -94,6 +110,18 @@ bool Period::periodOver()
 	return false;
 }
 
+bool Period::isPeriodStarted()
+{	return periodStarted;
+}
+
+score Period::getHomeScore()
+{	return homeScore;
+}
+
+score Period::getAwayScore()
+{	return awayScore;
+}
+
 void Period::Faceoff()
 {
 	this->startClock();
@@ -111,6 +139,10 @@ void Period::startClock()
 	if(clockRunning == false)
 	{
 		clockRunning = Flip(clockRunning);
+	}
+	if(periodStarted == false)
+	{	
+		periodStarted = true;
 	}
 }
 

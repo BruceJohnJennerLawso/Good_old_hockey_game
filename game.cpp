@@ -9,14 +9,14 @@
 //#include "Headers.hpp"
 //#include "Source.cpp"
 #include "game.hpp"
-
+#include <iostream>
 // Game Class /////////////////////////////////////////////////////////////////
 
 
 
 Game::Game(int period_minutes): 
 
-periodLength(period_minutes), numberOfPeriods(3), gameOver(false)	 
+periodLength(((seconds)period_minutes)*60), numberOfPeriods(3), gameOver(false)	 
 {
 	// ah dammit, no new in avr-gcc
 	
@@ -45,7 +45,7 @@ bool Game::inOvertime()
 }
 
 void Game::Update(seconds deltat)
-{	
+{	std::cout << "running Game::Update(" << deltat << ")" << std::endl;
 	if(periods[currentPeriod].periodOver())
 	{	
 		while(periods[currentPeriod].periodOver())
@@ -64,9 +64,15 @@ void Game::Update(seconds deltat)
 				
 				// so our first order of business is something like
 				// check if the sum of the two scores is equal
-				if(Equal(homeScore(), awayScore()))
+				if(Equal(getHomeScore(), getAwayScore()))
 				{	// time to head to (more) overtime(s)
-					
+					numberOfPeriods++;
+					if(this->newOvertime())
+					{	currentPeriod++;
+					}
+					else
+					{	// dunno what to do
+					}
 				}
 				else
 				{	// game is over, everybody go home now
@@ -76,23 +82,52 @@ void Game::Update(seconds deltat)
 			}
 		}
 	}
+	else
+	{	periods[currentPeriod].Update(deltat);
+	}
 }
 
 bool Game::newOvertime()
-{
+{	
+	std::cout << "Creating new overtime period" << std::endl;
+	Period * newPeriods;
 	
+	newPeriods = new Period[numberOfPeriods];
+	for(int cy = 0; cy < numberOfPeriods; ++cy)
+	{	newPeriods[cy] = periods[cy];
+	}
+	newPeriods[numberOfPeriods].setPeriodTime(periodLength);
+	
+	periods = newPeriods;
+	// uhh, I think this should work...
+	return true;
+}
+
+
+void Game::startClock()
+{	periods[currentPeriod].startClock();
 }
 
 void Game::Goal(player scoredBy)
 {
 }
 
-score Game::homeScore()
-{	
+score Game::getHomeScore()
+{	score output = 0;
+	for(int cy = 0; cy <= numberOfPeriods; ++cy)
+	{	
+		output += periods[cy].getHomeScore();
+	}
+	return output;
 }
 
-score Game::awayScore()
-{
+score Game::getAwayScore()
+{	score output = 0;
+	for(int cy = 0; cy <= numberOfPeriods; ++cy)
+	{	
+		output += periods[cy].getAwayScore();
+	}
+	return output;
 }
 
 bool Game::gameFinished()

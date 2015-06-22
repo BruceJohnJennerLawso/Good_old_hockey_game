@@ -21,7 +21,7 @@ class Game
 	
 	private:
 	Period * periods;
-	int periodLength;
+	seconds periodLength;
 	
 	int numberOfPeriods;
 	
@@ -45,9 +45,11 @@ class Game
 	// maybe we can get away with using exceptions here if we are
 	// very careful
 	
+	void startClock();
+	
 	void Goal(player scoredBy);
-	score homeScore();
-	score awayScore();
+	score getHomeScore();
+	score getAwayScore();
 	
 	bool gameFinished();
 	

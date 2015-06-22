@@ -14,17 +14,15 @@
 
 int main()
 {	
-	Period firstPeriod(5);
-	firstPeriod.Faceoff();
+	Game goodOldHockey(5);
 	
-	firstPeriod.Update(125.4);
-	
-	Period secondPeriod(5);
-	secondPeriod = firstPeriod;
-	secondPeriod.Update(1.0);
-	
-	std::cout << firstPeriod.getClockOutput() << std::endl;
-	std::cout << secondPeriod.getClockOutput() << std::endl;	
+	goodOldHockey.startClock();
+	goodOldHockey.Update(301.0);
+	goodOldHockey.startClock();	
+	goodOldHockey.Update(301.0);	
+	goodOldHockey.startClock();	
+	goodOldHockey.Update(301.0);
+	std::cout << goodOldHockey.getNumberOfPeriods() << std::endl;	
 	return 0;
 }
 

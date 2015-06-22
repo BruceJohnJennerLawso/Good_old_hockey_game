@@ -41,6 +41,8 @@ enum player {home, away};
 class Period
 {
 	public:
+	Period();
+	
 	Period(seconds init_time, int period_minutes);
 	Period(int period_minutes);
 
@@ -51,15 +53,25 @@ class Period
 	seconds Time;
 	bool clockRunning;
 	
+	bool periodStarted;
+	
 	score homeScore, awayScore;
 	// score for this period, so we can have period by period
 	// stats
 	// slightly misleading name here I guess
 
 	public:
+	
+	void setPeriodTime(seconds new_time);
+	
 	void Update(seconds deltat);
 	seconds getPeriodTime();
 	bool periodOver();
+	
+	bool isPeriodStarted();
+	
+	score getHomeScore();
+	score getAwayScore();
 	
 	void Faceoff();
 	// as a true canadian, yes I hear a whistle in my head when typing
