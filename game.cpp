@@ -40,6 +40,10 @@ int Game::getNumberOfPeriods()
 {	return numberOfPeriods;
 }
 
+int Game::getCurrentPeriod()
+{	return currentPeriod;
+}
+
 String Game::getClockOutput()
 {	return periods[currentPeriod -1].getClockOutput();
 }
@@ -53,7 +57,10 @@ bool Game::inOvertime()
 
 void Game::Update(seconds deltat)
 {	std::cout << "running Game::Update(" << deltat << ")" << std::endl;
-	if(periods[currentPeriod].periodOver())
+	if(!periods[currentPeriod -1].periodOver())
+	{	periods[currentPeriod -1].Update(deltat);
+	}
+	else
 	{	
 		while(periods[currentPeriod].periodOver())
 		{	
@@ -83,14 +90,12 @@ void Game::Update(seconds deltat)
 				}
 				else
 				{	// game is over, everybody go home now
-					
+					this->gameFinished();
+					break;
 				}
 				
 			}
 		}
-	}
-	else
-	{	periods[currentPeriod -1].Update(deltat);
 	}
 }
 
@@ -139,13 +144,11 @@ score Game::getAwayScore()
 }
 
 bool Game::gameFinished()
-{
-	
-	gameOver = Flip(gameOver);
+{	return gameOver;
 }
 
 void Game::gameIsOver()
-{
+{	gameOver = Flip(gameOver);
 }
 
 Game::~Game()

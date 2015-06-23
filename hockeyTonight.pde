@@ -61,17 +61,29 @@ void loop()
 {
 	hockeyGame.Update(deltat);
 
-	lcd setCursor(7,0);
+	lcd.setCursor(0,0);
+	lcd.print("HOME");
+
+	lcd setCursor(6,0);
 	lcd.print(hockeyGame.getClockOutput());
 	
+	lcd.setCursor(12, 0);
+	lcd.print("AWAY");
+	
+	lcd.setCursor(0,1);
+	lcd.print(hockeyGame.getHomeScore());
 
+	lcd.setCursor(7,1);
+	lcd.print(hockeyGame.getHomeScore());
+
+	lcd.setCursor(0,1);
 	lcd.print(hockeyGame.getHomeScore());
 
 	// set the cursor to column 0, line 1
 	// (note: line 1 is the second row, since counting begins with 0):
-	lcd.setCursor(0, 1);
+	//lcd.setCursor(0, 1);
 	// print the number of seconds since reset:
-	lcd.print(millis()/1000);
+	//lcd.print(millis()/1000);
 
 	uint8_t buttons = lcd.readButtons();
 

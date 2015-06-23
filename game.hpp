@@ -34,6 +34,7 @@ class Game
 	public:
 	
 	int getNumberOfPeriods();
+	int getCurrentPeriod();
 
 	String getClockOutput();
 

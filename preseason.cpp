@@ -16,12 +16,15 @@ int main()
 {	
 	Game goodOldHockey(5);
 	
+	while(!goodOldHockey.
+	
 	goodOldHockey.startClock();
 	goodOldHockey.Update(301.0);
 	goodOldHockey.startClock();	
 	goodOldHockey.Update(301.0);	
 	goodOldHockey.startClock();	
-	goodOldHockey.Update(301.0);
+	goodOldHockey.Update(301.0);	
+	
 	std::cout << goodOldHockey.getNumberOfPeriods() << std::endl;	
 	return 0;
 }
