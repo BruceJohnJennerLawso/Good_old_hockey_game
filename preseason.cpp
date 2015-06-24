@@ -17,7 +17,7 @@ int main()
 	Game goodOldHockey(5);
 	
 	goodOldHockey.startClock();
-	
+	std::cout << sizeof(Period) << std::endl;
 	while(!goodOldHockey.gameFinished())
 	{	if(!goodOldHockey.clockIsRunning())
 		{	goodOldHockey.startClock();

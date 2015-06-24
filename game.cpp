@@ -13,6 +13,8 @@
 // Game Class /////////////////////////////////////////////////////////////////
 
 
+#include <exception>
+
 
 Game::Game(int period_minutes): 
 
@@ -102,16 +104,26 @@ void Game::Update(seconds deltat)
 bool Game::newOvertime()
 {	
 	std::cout << "Creating new overtime period" << std::endl;
-	Period * newPeriods;
 	
-	newPeriods = new Period[numberOfPeriods];
-	for(int cy = 0; cy < numberOfPeriods; ++cy)
-	{	newPeriods[cy] = periods[cy];
+	try
+	{	std::cout << "starting creation of new overtime (new Period[] next)" << std::endl;
+		Period * newPeriods;
+		newPeriods = new Period[numberOfPeriods];
+		
+		std::cout << "create overtime with " << numberOfPeriods << " periods so far" << std::endl;
+		
+		for(int cy = 0; cy < numberOfPeriods; ++cy)
+		{	newPeriods[cy] = periods[cy];
+		}
+		newPeriods[numberOfPeriods].setPeriodTime(periodLength);
+		periods = newPeriods;
+		// uhh, I think this should work...
 	}
-	newPeriods[numberOfPeriods].setPeriodTime(periodLength);
+	catch(std::exception& e)
+	{	std::cout << e.what() << std::endl;
+	}
 	
-	periods = newPeriods;
-	// uhh, I think this should work...
+	std::cout << "Successfully created new overtime period" << std::endl;
 	return true;
 }
 
