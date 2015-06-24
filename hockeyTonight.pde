@@ -74,10 +74,10 @@ void loop()
 	lcd.print(hockeyGame.getHomeScore());
 
 	lcd.setCursor(7,1);
-	lcd.print(hockeyGame.getHomeScore());
+	lcd.print(hockeyGame.getCurrentPeriod);
 
-	lcd.setCursor(0,1);
-	lcd.print(hockeyGame.getHomeScore());
+	lcd.setCursor(14,1);
+	lcd.print(hockeyGame.getAwayScore());
 
 	// set the cursor to column 0, line 1
 	// (note: line 1 is the second row, since counting begins with 0):
