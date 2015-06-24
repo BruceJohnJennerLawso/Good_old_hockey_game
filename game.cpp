@@ -115,7 +115,7 @@ bool Game::newOvertime()
 		for(int cy = 0; cy < numberOfPeriods; ++cy)
 		{	newPeriods[cy] = periods[cy];
 		}
-		newPeriods[numberOfPeriods].setPeriodTime(periodLength);
+		newPeriods[numberOfPeriods - 1].setPeriodTime(periodLength);
 		periods = newPeriods;
 		// uhh, I think this should work...
 	}
