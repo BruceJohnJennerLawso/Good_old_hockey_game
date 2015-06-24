@@ -13,12 +13,9 @@
 // Game Class /////////////////////////////////////////////////////////////////
 
 
-#include <exception>
-
-
 Game::Game(int period_minutes): 
 
-periodLength(((seconds)period_minutes)*60), numberOfPeriods(3), gameOver(false),
+periodLength(((seconds)period_minutes)*60), numberOfPeriods(3), gameEnded(false),
 currentPeriod(1)
 {	std::cout << "Constructing Game::Game(" << period_minutes << ")";
 	std::cout << std::endl;
@@ -49,6 +46,16 @@ int Game::getCurrentPeriod()
 String Game::getClockOutput()
 {	return periods[currentPeriod -1].getClockOutput();
 }
+
+#ifdef PRESEASON
+	
+void Game::printClockOutput()
+{	std::cout << "################" << std::endl;
+	std::cout << "HOME" << "  " << this->getClockOutput() << "  " << "AWAY" << std::endl;
+	std::cout << this->getHomeScore() << "      " << this->getCurrentPeriod() << "      " << this->getAwayScore() << std::endl;
+}
+	
+#endif
 
 bool Game::inOvertime()
 {	if(currentPeriod > 3)
@@ -103,27 +110,18 @@ void Game::Update(seconds deltat)
 
 bool Game::newOvertime()
 {	
-	std::cout << "Creating new overtime period" << std::endl;
-	
-	try
-	{	std::cout << "starting creation of new overtime (new Period[] next)" << std::endl;
-		Period * newPeriods;
-		newPeriods = new Period[numberOfPeriods];
+	std::cout << "starting creation of new overtime (new Period[] next)" << std::endl;
+	Period * newPeriods;
+	newPeriods = new Period[numberOfPeriods];
 		
-		std::cout << "create overtime with " << numberOfPeriods << " periods so far" << std::endl;
+	std::cout << "create overtime with " << numberOfPeriods << " periods so far" << std::endl;
 		
-		for(int cy = 0; cy < numberOfPeriods; ++cy)
-		{	newPeriods[cy] = periods[cy];
-		}
-		newPeriods[numberOfPeriods - 1].setPeriodTime(periodLength);
-		periods = newPeriods;
-		// uhh, I think this should work...
+	for(int cy = 0; cy < numberOfPeriods; ++cy)
+	{	newPeriods[cy] = periods[cy];
 	}
-	catch(std::exception& e)
-	{	std::cout << e.what() << std::endl;
-	}
-	
-	std::cout << "Successfully created new overtime period" << std::endl;
+	newPeriods[numberOfPeriods - 1].setPeriodTime(periodLength);
+	periods = newPeriods;
+	// uhh, I think this should work...
 	return true;
 }
 
@@ -139,12 +137,15 @@ bool Game::clockIsRunning()
 }
 
 void Game::Goal(player scoredBy)
-{
+{	periods[currentPeriod -1].Goal(scoredBy);
+	if(this->inOvertime())
+	{	this->gameOver();
+	}
 }
 
 score Game::getHomeScore()
 {	score output = 0;
-	for(int cy = 0; cy <= numberOfPeriods; ++cy)
+	for(int cy = 0; cy < numberOfPeriods; ++cy)
 	{	
 		output += periods[cy].getHomeScore();
 	}
@@ -153,7 +154,7 @@ score Game::getHomeScore()
 
 score Game::getAwayScore()
 {	score output = 0;
-	for(int cy = 0; cy <= numberOfPeriods; ++cy)
+	for(int cy = 0; cy < numberOfPeriods; ++cy)
 	{	
 		output += periods[cy].getAwayScore();
 	}
@@ -161,17 +162,17 @@ score Game::getAwayScore()
 }
 
 bool Game::gameFinished()
-{	return gameOver;
+{	return gameEnded;
 }
 
-void Game::gameIsOver()
+void Game::gameOver()
 {	if(currentPeriod > 3)
 	{	// in overtime, goal was scored, but the program dont know to close
 		// just yet, cause usually the period isnt over by the usual way of
 		// the clock running out
 		periods[currentPeriod -1].endPeriod();
 	}
-	gameOver = Flip(gameOver);
+	gameEnded = Flip(gameEnded);
 }
 
 Game::~Game()

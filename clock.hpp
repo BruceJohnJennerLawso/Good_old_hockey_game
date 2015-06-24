@@ -81,6 +81,8 @@ class Period
 	// as a true canadian, yes I hear a whistle in my head when typing
 	// this
 	
+	void Goal(player scoredBy);
+	
 	bool clockIsRunning();
 
 	void stopClock();

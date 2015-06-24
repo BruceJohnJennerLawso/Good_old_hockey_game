@@ -17,16 +17,21 @@ int main()
 	Game goodOldHockey(5);
 	
 	goodOldHockey.startClock();
-	std::cout << sizeof(Period) << std::endl;
 	while(!goodOldHockey.gameFinished())
 	{	if(!goodOldHockey.clockIsRunning())
 		{	goodOldHockey.startClock();
 		}
 		goodOldHockey.Update(0.9);
+		if(goodOldHockey.getCurrentPeriod() == 4)
+		{	goodOldHockey.Update(10.1);
+			goodOldHockey.Goal(home);
+			// the home team wins...
+		}
 		//std::cout << goodOldHockey.clockIsRunning() << " " << " " << goodOldHockey.getClockOutput() << std::endl;
 	}	
+	goodOldHockey.printClockOutput();
 	
-	std::cout << goodOldHockey.getNumberOfPeriods() << std::endl;	
+	//std::cout << goodOldHockey.getNumberOfPeriods() << std::endl;	
 	return 0;
 }
 

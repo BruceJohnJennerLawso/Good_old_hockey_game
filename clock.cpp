@@ -134,6 +134,17 @@ void Period::Faceoff()
 	this->startClock();
 }
 
+void Period::Goal(player scoredBy)
+{	
+	this->stopClock();
+	if(scoredBy == away)
+	{	awayScore += 1;
+	}
+	else if(scoredBy == home)
+	{	homeScore += 1;
+	}
+}
+
 void Period::stopClock()
 {	
 	if(clockRunning == true)

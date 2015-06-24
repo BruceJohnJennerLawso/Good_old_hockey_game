@@ -29,7 +29,7 @@ class Game
 	// use 1, 2, 3, here, for more readable to hockey fans than the
 	// programming convention of starting at 0		
 	
-	bool gameOver;
+	bool gameEnded;
 	
 	public:
 	
@@ -37,7 +37,11 @@ class Game
 	int getCurrentPeriod();
 
 	String getClockOutput();
-
+	#ifdef PRESEASON
+	
+	void printClockOutput();
+	
+	#endif
 
 	
 	bool inOvertime();
@@ -59,7 +63,7 @@ class Game
 	
 	bool gameFinished();
 	
-	void gameIsOver();
+	void gameOver();
 	~Game();
 
 };
