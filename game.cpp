@@ -56,14 +56,14 @@ bool Game::inOvertime()
 }
 
 void Game::Update(seconds deltat)
-{	std::cout << "running Game::Update(" << deltat << ")" << std::endl;
+{	//std::cout << "running Game::Update(" << deltat << ")" << std::endl;
 	if(!periods[currentPeriod -1].periodOver())
 	{	periods[currentPeriod -1].Update(deltat);
 	}
 	else
 	{	
-		while(periods[currentPeriod].periodOver())
-		{	
+		while(periods[currentPeriod - 1].periodOver())
+		{	std::cout << "Current period # " << currentPeriod << " finished" << std::endl;
 			if(currentPeriod < numberOfPeriods)
 			{	currentPeriod++;
 			}
@@ -121,6 +121,11 @@ void Game::startClock()
 	periods[currentPeriod -1].startClock();
 }
 
+bool Game::clockIsRunning()
+{	
+	return periods[currentPeriod-1].clockIsRunning();
+}
+
 void Game::Goal(player scoredBy)
 {
 }
@@ -148,7 +153,13 @@ bool Game::gameFinished()
 }
 
 void Game::gameIsOver()
-{	gameOver = Flip(gameOver);
+{	if(currentPeriod > 3)
+	{	// in overtime, goal was scored, but the program dont know to close
+		// just yet, cause usually the period isnt over by the usual way of
+		// the clock running out
+		periods[currentPeriod -1].endPeriod();
+	}
+	gameOver = Flip(gameOver);
 }
 
 Game::~Game()

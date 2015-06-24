@@ -43,6 +43,7 @@ Period::Period()
 	awayScore = 0;
 	clockRunning = false;
 	periodStarted = false;
+	periodEnded = false;
 }
 
 Period::Period(seconds init_time, int period_minutes)
@@ -58,6 +59,7 @@ Period::Period(seconds init_time, int period_minutes)
 	awayScore = 0;
 	clockRunning = false;
 	periodStarted = false;
+	periodEnded = false;
 }
 
 Period::Period(int period_minutes)
@@ -67,6 +69,7 @@ Period::Period(int period_minutes)
 	awayScore = 0;
 	clockRunning = false;
 	periodStarted = false;
+	periodEnded = false;
 }
 
 
@@ -76,6 +79,7 @@ Period Period::operator= (const Period p)
 	
 	homeScore = p.homeScore;
 	awayScore = p.awayScore;
+	periodEnded = p.periodEnded;
 	
 	return (*this);		
 }
@@ -89,9 +93,11 @@ void Period::Update(seconds deltat)
 	{
 		Time -= deltat;
 		if(Time < 0)
-		{	Time = 0;
+		{	std::cout << "period has ended" << std::endl;
+			Time = 0;
 			// no negative times
 			clockRunning = Flip(clockRunning);
+			this->endPeriod();
 			// stop the clock at zero and set the state
 		}
 	}
@@ -104,10 +110,11 @@ seconds Period::getPeriodTime()
 }
 
 bool Period::periodOver()
-{	if(Time <= 0)
-	{	return true;
-	}
-	return false;
+{	return periodEnded;
+}
+
+void Period::endPeriod()
+{	periodEnded = true;
 }
 
 bool Period::isPeriodStarted()
@@ -134,15 +141,21 @@ void Period::stopClock()
 	}
 }
 
+bool Period::clockIsRunning()
+{	return clockRunning;
+}
+
 void Period::startClock()
-{	
-	if(clockRunning == false)
-	{
-		clockRunning = Flip(clockRunning);
+{	//std::cout << "periodEnded = " << periodEnded << std::endl;
+	
+	if(periodEnded == false)
+	{	if(clockRunning == false)
+		{
+			clockRunning = Flip(clockRunning);
+		}	
 	}
-	if(periodStarted == false)
-	{	
-		periodStarted = true;
+	else
+	{	//std::cout << "Unable to resume period, is over" << std::endl;
 	}
 }
 

@@ -55,6 +55,8 @@ class Period
 	
 	bool periodStarted;
 	
+	bool periodEnded;
+	
 	score homeScore, awayScore;
 	// score for this period, so we can have period by period
 	// stats
@@ -67,6 +69,8 @@ class Period
 	void Update(seconds deltat);
 	seconds getPeriodTime();
 	bool periodOver();
+	void endPeriod();
+	// manually force period to end, ie overtime goal
 	
 	bool isPeriodStarted();
 	

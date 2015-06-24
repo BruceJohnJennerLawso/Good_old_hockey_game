@@ -51,6 +51,7 @@ class Game
 	// very careful
 	
 	void startClock();
+	bool clockIsRunning();
 	
 	void Goal(player scoredBy);
 	score getHomeScore();
