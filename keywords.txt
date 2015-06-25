@@ -1,0 +1,33 @@
+Game	KEYWORD1
+getNumberOfPeriods	KEYWORD2
+getCurrentPeriod	KEYWORD2
+getClockOutput	KEYWORD2
+inOvertime	KEYWORD2
+Update	KEYWORD2
+startClock	KEYWORD2
+stopClock	KEYWORD2
+toggleClock	KEYWORD2
+clockIsRunning	KEYWORD2
+Goal	KEYWORD2
+getHomeScore	KEYWORD2
+getAwayScore	KEYWORD2
+gameFinished	KEYWORD2
+gameOver	KEYWORD2
+
+
+Period	KEYWORD1
+setPeriodTime	KEYWORD2
+Update	KEYWORD2
+getPeriodTime	KEYWORD2
+periodOver	KEYWORD2
+endPeriod	KEYWORD2
+isPeriodStarted	KEYWORD2
+getHomeScore	KEYWORD2
+getAwayScore	KEYWORD2
+Faceoff	KEYWORD2
+Goal	KEYWORD2
+clockIsRunning	KEYWORD2
+stopClock	KEYWORD2
+startClock	KEYWORD2
+getClockOutput	KEYWORD2
+
