@@ -172,19 +172,20 @@ void Period::startClock()
 
 String Period::getClockOutput()
 {
+	
+	int minutes = 0;
+		
+	int timeval = Time;
+		
+	if(timeval >= 60)
+	{	while(timeval>= 60)
+		{	minutes += 1;
+			timeval -= 60;
+		}
+	}
 	#ifdef PRESEASON
 		// ahh, we need something to test here
 		
-		int minutes = 0;
-		
-		int timeval = Time;
-		
-		if(timeval >= 60)
-		{	while(timeval>= 60)
-			{	minutes += 1;
-				timeval -= 60;
-			}
-		}
 		std::string output = std::to_string(minutes);
 		output.append(":");
 		if(timeval < 10)
@@ -196,7 +197,15 @@ String Period::getClockOutput()
 	#else
 		// real deal here running on the arduino, so we need to properly
 		// use the arduino string type provided for us
-		
+		String output = minutes;
+		output.concat(":");
+		if(timeval < 10)
+		{	// tack on leading 0 so it looks right
+			output.concat("0");
+		}
+		output.concat(timeval);
+		return output;
+		// there we go
 	#endif
 	
 }

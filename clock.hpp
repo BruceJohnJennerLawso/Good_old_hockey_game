@@ -22,6 +22,8 @@
 
 	#include <string>
 	typedef std::string String;
+	// otherwise, we sneakily get away with it just being the String
+	// type declared in the Arduino source
 #else
 	#include "Arduino.h"
 #endif
