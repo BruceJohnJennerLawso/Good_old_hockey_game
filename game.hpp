@@ -55,6 +55,8 @@ class Game
 	// very careful
 	
 	void startClock();
+	void stopClock();
+	void toggleClock();
 	bool clockIsRunning();
 	
 	void Goal(player scoredBy);

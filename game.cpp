@@ -131,6 +131,19 @@ void Game::startClock()
 	periods[currentPeriod -1].startClock();
 }
 
+void Game::stopClock()
+{
+	periods[currentPeriod -1].stopClock();
+}
+
+void Game::toggleClock()
+{
+	if(this->clockIsRunning())
+	{	this->stopClock();
+	}
+	this->startClock();
+}
+
 bool Game::clockIsRunning()
 {	
 	return periods[currentPeriod-1].clockIsRunning();

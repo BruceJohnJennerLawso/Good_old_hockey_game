@@ -92,29 +92,25 @@ void loop()
 		lcd.clear();
 		lcd.setCursor(0,0);
 		if (buttons & BUTTON_UP)
-		{
-			lcd.print("UP ");
-			lcd.setBacklight(RED);
+		{	
+			// lcd.print("UP ");
 		}
 		if (buttons & BUTTON_DOWN)
 		{
-			lcd.print("DOWN ");
-			lcd.setBacklight(YELLOW);
+			// lcd.print("DOWN ");
 		}
 		if (buttons & BUTTON_LEFT)
-		{
-			lcd.print("LEFT ");
-			lcd.setBacklight(GREEN);
+		{	hockeyGame.Goal(home);
+			lcd.print("Home Team Scores");
 		}
 		if (buttons & BUTTON_RIGHT)
-		{
-			lcd.print("RIGHT ");
-			lcd.setBacklight(TEAL);
+		{	hockeyGame.Goal(AWAY);
+			lcd.print("Away Team Scores");
 		}
 		if (buttons & BUTTON_SELECT)
 		{	// we'll treat this as a clock toggle
-			lcd.print("SELECT ");
-			lcd.setBacklight(VIOLET);
+			hockeyGame.toggleClock();
+			//lcd.print("Toggle");
 		}
 	}
 	deltat = ((millis()-timeElapsed)/1000);
