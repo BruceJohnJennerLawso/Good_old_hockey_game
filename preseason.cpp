@@ -27,11 +27,8 @@ int main()
 			goodOldHockey.Goal(home);
 			// the home team wins...
 		}
-		//std::cout << goodOldHockey.clockIsRunning() << " " << " " << goodOldHockey.getClockOutput() << std::endl;
 	}	
 	goodOldHockey.printClockOutput();
-	
-	//std::cout << goodOldHockey.getNumberOfPeriods() << std::endl;	
 	return 0;
 }
 
