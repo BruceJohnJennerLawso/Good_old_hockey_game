@@ -9,7 +9,7 @@
 
 //#include "Headers.hpp"
 //#include "Source.cpp"
-#include "game.hpp"
+#include "game.h"
 
 #ifdef PRESEASON
 
