@@ -12,7 +12,11 @@
 
 #include "clock.h"
 
+#ifdef PRESEASON
+
 #include <iostream>
+
+#endif
 
 bool Flip(bool input)
 {	if(input == true)
