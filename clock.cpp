@@ -204,7 +204,8 @@ String Period::getClockOutput()
 	#else
 		// real deal here running on the arduino, so we need to properly
 		// use the arduino string type provided for us
-		String output = minutes;
+		String output = "";
+		output.concat(minutes);
 		output.concat(":");
 		if(timeval < 10)
 		{	// tack on leading 0 so it looks right
