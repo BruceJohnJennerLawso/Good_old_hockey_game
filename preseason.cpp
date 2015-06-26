@@ -9,8 +9,11 @@
 
 //#include "Headers.hpp"
 //#include "Source.cpp"
-#include <iostream>
 #include "game.hpp"
+
+#ifdef PRESEASON
+
+#include <iostream>
 
 int main()
 {	
@@ -32,4 +35,4 @@ int main()
 	return 0;
 }
 
-
+#endif
