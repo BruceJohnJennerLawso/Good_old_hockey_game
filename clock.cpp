@@ -97,7 +97,10 @@ void Period::Update(seconds deltat)
 	{
 		Time -= deltat;
 		if(Time < 0)
-		{	std::cout << "period has ended" << std::endl;
+		{	
+			#ifdef PRESEASON
+			std::cout << "period has ended" << std::endl;
+			#endif
 			Time = 0;
 			// no negative times
 			clockRunning = Flip(clockRunning);

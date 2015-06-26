@@ -17,8 +17,12 @@ Game::Game(int period_minutes):
 
 periodLength(((seconds)period_minutes)*60), numberOfPeriods(3), gameEnded(false),
 currentPeriod(1)
-{	std::cout << "Constructing Game::Game(" << period_minutes << ")";
+{	
+	#ifdef PRESEASON
+	std::cout << "Constructing Game::Game(" << period_minutes << ")";
 	std::cout << std::endl;
+	#endif
+	
 	// ah dammit, no new in avr-gcc
 	
 	// or on second thought apparently it does...
@@ -32,7 +36,9 @@ currentPeriod(1)
 		}
 		
 	};
+	#ifdef PRESEASON
 	std::cout << "finished constructing Game::Game" << std::endl;
+	#endif
 }
 
 int Game::getNumberOfPeriods()
@@ -72,7 +78,11 @@ void Game::Update(seconds deltat)
 	else
 	{	
 		while(periods[currentPeriod - 1].periodOver())
-		{	std::cout << "Current period # " << currentPeriod << " finished" << std::endl;
+		{	
+			#ifdef PRESEASON
+			std::cout << "Current period # " << currentPeriod << " finished" << std::endl;
+			#endif
+			
 			if(currentPeriod < numberOfPeriods)
 			{	currentPeriod++;
 			}
@@ -110,12 +120,17 @@ void Game::Update(seconds deltat)
 
 bool Game::newOvertime()
 {	
+	#ifdef PRESEASON
 	std::cout << "starting creation of new overtime (new Period[] next)" << std::endl;
+	#endif
 	Period * newPeriods;
 	newPeriods = new Period[numberOfPeriods];
-		
+	
+	
+	#ifdef PRESEASON	
 	std::cout << "create overtime with " << numberOfPeriods << " periods so far" << std::endl;
-		
+	#endif
+	
 	for(int cy = 0; cy < numberOfPeriods; ++cy)
 	{	newPeriods[cy] = periods[cy];
 	}
