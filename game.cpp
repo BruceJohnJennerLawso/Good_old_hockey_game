@@ -145,12 +145,17 @@ void Game::stopClock()
 
 void Game::toggleClock()
 {
-	if(this->clockIsRunning())
-	{	this->stopClock();
+	if(!this->gameFinished())
+	{
+		if(this->clockIsRunning() == true)
+		{	this->stopClock();
+		}
+		else
+		{	this->startClock();
+		}
+		// cannot figure it out, everything looks right, why isnt it working in
+		// the sketch?
 	}
-	this->startClock();
-	// cannot figure it out, everything looks right, why isnt it working in
-	// the sketch?
 }
 
 bool Game::clockIsRunning()
@@ -161,10 +166,12 @@ bool Game::clockIsRunning()
 void Game::Goal(player scoredBy)
 {	
 	if(!this->gameFinished())
-	{
-		periods[currentPeriod -1].Goal(scoredBy);
-		if(this->inOvertime())
-		{	this->gameOver();
+	{	if(this->clockIsRunning() == true)
+		{	
+			periods[currentPeriod -1].Goal(scoredBy);
+			if(this->inOvertime())
+			{	this->gameOver();
+			}
 		}
 	}
 }

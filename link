@@ -1,5 +1,5 @@
 #!/bin/bash
 
-g++ preseason.o game.o clock.o -o preseason
+g++ preseason.o game.o clock.o -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio -o preseason
 
 exit 0

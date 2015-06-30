@@ -124,7 +124,7 @@ void Period::Update(seconds deltat)
 			print("period has ended");
 			Time = 0;
 			// no negative times
-			clockRunning = Flip(clockRunning);
+			this->stopClock();
 			this->endPeriod();
 			// stop the clock at zero and set the state
 		}
