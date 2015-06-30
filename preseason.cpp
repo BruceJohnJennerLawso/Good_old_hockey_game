@@ -26,7 +26,8 @@ int main()
 		}
 		goodOldHockey.Update(0.9);
 		if(goodOldHockey.getCurrentPeriod() == 4)
-		{	goodOldHockey.Update(10.1);
+		{	
+			goodOldHockey.Update(10.1);
 			goodOldHockey.Goal(home);
 			// the home team wins...
 		}

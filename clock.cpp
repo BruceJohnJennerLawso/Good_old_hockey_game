@@ -99,7 +99,9 @@ Period::Period(int period_minutes)
 
 
 Period Period::operator= (const Period p)
-{	Time = p.Time;
+{	
+	print("Calling Period::operator=");
+	Time = p.Time;
 	clockRunning = p.clockRunning;
 	
 	homeScore = p.homeScore;

@@ -123,7 +123,7 @@ bool Game::newOvertime()
 	
 	print("create overtime with ", numberOfPeriods, " periods so far");
 	
-	for(int cy = 0; cy < numberOfPeriods; ++cy)
+	for(int cy = 0; cy < (numberOfPeriods-1); ++cy)
 	{	newPeriods[cy] = periods[cy];
 	}
 	newPeriods[numberOfPeriods - 1].setPeriodTime(periodLength);
@@ -159,9 +159,13 @@ bool Game::clockIsRunning()
 }
 
 void Game::Goal(player scoredBy)
-{	periods[currentPeriod -1].Goal(scoredBy);
-	if(this->inOvertime())
-	{	this->gameOver();
+{	
+	if(!this->gameFinished())
+	{
+		periods[currentPeriod -1].Goal(scoredBy);
+		if(this->inOvertime())
+		{	this->gameOver();
+		}
 	}
 }
 
