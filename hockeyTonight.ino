@@ -39,13 +39,26 @@ void setup()
 	// Print a message to the LCD. We track how long it takes since
 	// this library has been optimized a bit and we're proud of it :)
 	int time = millis();
-	lcd.print("Table Hockey Game");
+	lcd.setCursor(0,0);
+	lcd.print("Table Hockey");
+	lcd.setCursor(0,1);
+	lcd.print("    Game");
 	time = millis() - time;
 	Serial.print("Initialized in  "); Serial.print(time); Serial.println(" ms");
 	lcd.setBacklight(WHITE);
 	delay(5000);
 	// hold this open five secs, so we can see the startup message
 	// before we get going
+}
+
+void clearLcd()
+{	
+	lcd.setCursor(0,0);
+	lcd.print("                ");	
+	lcd.setCursor(0,1);
+	lcd.print("                ");
+	// allows us to avoid the weird artifact issues where characters were being
+	// left onscreen after new pieces of text were being redrawn
 }
 
 Game hockeyGame(5);
@@ -106,11 +119,21 @@ void loop()
 		}
 		if (buttons & BUTTON_LEFT)
 		{	hockeyGame.Goal(home);
+			
+			clearLcd();
+			lcd.setCursor(0,0);
 			lcd.print("Home Team Scores");
+			delay(5000);
+			clearLcd();
 		}
 		if (buttons & BUTTON_RIGHT)
 		{	hockeyGame.Goal(away);
+			
+			clearLcd();
+			lcd.setCursor(0,0);
 			lcd.print("Away Team Scores");
+			delay(5000);
+			clearLcd();
 		}
 		if (buttons & BUTTON_SELECT)
 		{	// we'll treat this as a clock toggle

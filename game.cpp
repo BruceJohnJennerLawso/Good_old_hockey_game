@@ -162,6 +162,8 @@ void Game::toggleClock()
 	{	this->stopClock();
 	}
 	this->startClock();
+	// cannot figure it out, everything looks right, why isnt it working in
+	// the sketch?
 }
 
 bool Game::clockIsRunning()
