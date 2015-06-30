@@ -15,8 +15,29 @@
 #ifdef PRESEASON
 
 #include <iostream>
+void print(String output)
+{	
+	std::cout << output << std::endl;
+}
+
+void print(String output, int constructor_arg, String fin)
+{	
+	std::cout << output << constructor_arg << fin << std::endl;
+}
+
+#else
+void print(String output)
+{	
+}
+
+void print(String output, int constructor_arg, String fin)
+{
+}
 
 #endif
+
+
+
 
 bool Flip(bool input)
 {	if(input == true)
@@ -98,9 +119,7 @@ void Period::Update(seconds deltat)
 		Time -= deltat;
 		if(Time < 0)
 		{	
-			#ifdef PRESEASON
-			std::cout << "period has ended" << std::endl;
-			#endif
+			print("period has ended");
 			Time = 0;
 			// no negative times
 			clockRunning = Flip(clockRunning);
@@ -164,8 +183,7 @@ bool Period::clockIsRunning()
 }
 
 void Period::startClock()
-{	//std::cout << "periodEnded = " << periodEnded << std::endl;
-	
+{		
 	if(periodEnded == false)
 	{	if(clockRunning == false)
 		{
