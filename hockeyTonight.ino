@@ -29,6 +29,8 @@ Adafruit_RGBLCDShield lcd = Adafruit_RGBLCDShield();
 #define VIOLET 0x5
 #define WHITE 0x7
 
+void clearLcd();
+
 void setup()
 {
 	// Debugging output
@@ -47,6 +49,7 @@ void setup()
 	Serial.print("Initialized in  "); Serial.print(time); Serial.println(" ms");
 	lcd.setBacklight(WHITE);
 	delay(5000);
+        clearLcd();
 	// hold this open five secs, so we can see the startup message
 	// before we get going
 }
