@@ -22,7 +22,11 @@
 
 int main()
 {	
-	Game goodOldHockey(5);
+	
+	sf::Clock clock;
+	double deltat = 0;
+	
+	Game goodOldHockey(1);
 	
 	sf::Font scorefont;
 	if(!scorefont.loadFromFile("./scoreboard.ttf"))
@@ -46,6 +50,8 @@ int main()
 	
 	while (window.isOpen())
 	{	
+		deltat = clock.restart().asSeconds();
+		goodOldHockey.Update(deltat);
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -53,29 +59,29 @@ int main()
 			{	
 				window.close();
 			}
-			if(event.key.code == sf::Keyboard::Escape)
-			{
-				window.close();
+			if(event.type == sf::Event::KeyPressed)
+			{	if(event.key.code == sf::Keyboard::Escape)
+				{
+					window.close();
+				}
+				if(event.key.code == sf::Keyboard::Space)
+				{	goodOldHockey.toggleClock();
+				}
+				if(event.key.code == sf::Keyboard::D)
+				{	goodOldHockey.Goal(away);
+				}
+				if(event.key.code == sf::Keyboard::A)
+				{	goodOldHockey.Goal(home);
+				}
+				if(event.key.code == sf::Keyboard::A)
+				{	goodOldHockey.Goal(home);
+				}			
 			}
-			if(event.key.code == sf::Keyboard::Space)
-			{	goodOldHockey.toggleClock();
-			}
-			if(event.key.code == sf::Keyboard::D)
-			{	goodOldHockey.Goal(away);
-			}
-			if(event.key.code == sf::Keyboard::A)
-			{	goodOldHockey.Goal(home);
-			}
-			if(event.key.code == sf::Keyboard::A)
-			{	goodOldHockey.Goal(home);
-			}			
 		}
 		std::string outputl1;
 		outputl1.append("HOME  ");
 		outputl1.append(goodOldHockey.getClockOutput());
 		outputl1.append("  AWAY");
-
-		
 
 		line1.setString(outputl1);
 		
@@ -87,29 +93,13 @@ int main()
 		outputl2.append("      ");
 		outputl2.append(std::to_string(goodOldHockey.getAwayScore()));		
 
-		line1.setString(outputl2);		
+		line2.setString(outputl2);		
 
 		window.clear();
 		window.draw(line1);
 		window.draw(line2);		
 		window.display();
 	}
-	
-	goodOldHockey.startClock();
-	while(!goodOldHockey.gameFinished())
-	{	if(!goodOldHockey.clockIsRunning())
-		{	goodOldHockey.startClock();
-		}
-		goodOldHockey.Update(0.9);
-		if(goodOldHockey.getCurrentPeriod() == 4)
-		{	
-			goodOldHockey.Update(10.1);
-			goodOldHockey.Goal(home);
-			// the home team wins...
-		}
-	}	
-	goodOldHockey.printClockOutput();
-	return 0;
 }
 
 #endif
