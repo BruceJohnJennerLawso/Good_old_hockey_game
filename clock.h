@@ -12,22 +12,10 @@
 #include <stdlib.h>
 // why malloc why
 
+#include "environment.h"
+
 #ifndef ClOcK
 #define ClOcK
-
-#define PRESEASON
-
-
-#ifdef PRESEASON
-
-	#include <string>
-	typedef std::string String;
-	// otherwise, we sneakily get away with it just being the String
-	// type declared in the Arduino source
-	
-#else
-	#include "Arduino.h"
-#endif
 
 void print(String output);
 void print(String output, int constructor_arg, String fin);
