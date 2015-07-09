@@ -10,6 +10,7 @@
 //#include "Headers.hpp"
 //#include "Source.cpp"
 #include "game.h"
+#include "display.h"
 
 #ifdef PRESEASON
 
@@ -27,6 +28,8 @@ int main()
 	double deltat = 0;
 	
 	Game goodOldHockey(1);
+	
+	Display lcdDisplay;
 	
 	sf::Font scorefont;
 	if(!scorefont.loadFromFile("./scoreboard.ttf"))
@@ -75,25 +78,42 @@ int main()
 				}
 				if(event.key.code == sf::Keyboard::A)
 				{	goodOldHockey.Goal(home);
+				}	
+				if(event.key.code == sf::Keyboard::I)
+				{	lcdDisplay.printContents();
 				}			
 			}
 		}
-		std::string outputl1;
-		outputl1.append("HOME  ");
-		outputl1.append(goodOldHockey.getClockOutput());
-		outputl1.append("  AWAY");
+		//std::string outputl1;
+		
+		lcdDisplay.printToLine(1, 0, "HOME");
+		lcdDisplay.printToLine(1, 6, goodOldHockey.getClockOutput());		
+		lcdDisplay.printToLine(1, 12, "AWAY");
+		
+		//outputl1.append("HOME  ");
+		//outputl1.append(goodOldHockey.getClockOutput());
+		//outputl1.append("  AWAY");
 
-		line1.setString(outputl1);
+		//line1.setString(outputl1);
+				
 		
 		
-		std::string outputl2;
-		outputl2.append(std::to_string(goodOldHockey.getHomeScore()));
-		outputl2.append("      ");
-		outputl2.append(std::to_string(goodOldHockey.getCurrentPeriod()));
-		outputl2.append("      ");
-		outputl2.append(std::to_string(goodOldHockey.getAwayScore()));		
+		//std::string outputl2;
+		
+		lcdDisplay.printToLine(2, 0, goodOldHockey.getHomeScore());
+		lcdDisplay.printToLine(2, 7, goodOldHockey.getCurrentPeriod());
+		lcdDisplay.printToLine(2, 14, goodOldHockey.getAwayScore());
+		
+		//outputl2.append(std::to_string(goodOldHockey.getHomeScore()));
+		//outputl2.append("      ");
+		//outputl2.append(std::to_string(goodOldHockey.getCurrentPeriod()));
+		//outputl2.append("      ");
+		//outputl2.append(std::to_string(goodOldHockey.getAwayScore()));		
 
-		line2.setString(outputl2);		
+		//line2.setString(outputl2);		
+
+		line1.setString(lcdDisplay.getLine(1));
+		line2.setString(lcdDisplay.getLine(2));
 
 		window.clear();
 		window.draw(line1);

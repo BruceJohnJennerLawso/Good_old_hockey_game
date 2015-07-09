@@ -41,6 +41,14 @@ class Display
 	String getLine(short line_number);
 	
 	void printToLine(short line_number, short startPoint, String input);
+	void printToLine(short line_number, short startPoint, int input);	
+	
+	#ifdef PRESEASON
+	
+	void printContents();
+	
+	#endif
+	
 	
 	~Display();
 };
