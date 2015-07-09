@@ -14,6 +14,8 @@
 #define EnViRoNmEnT
 
 
+
+
 #define PRESEASON
 
 
@@ -27,5 +29,8 @@
 #else
 	#include "Arduino.h"
 #endif
+
+void print(String output);
+void print(String output, int constructor_arg, String fin);
 
 #endif

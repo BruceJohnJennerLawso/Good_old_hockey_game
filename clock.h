@@ -17,8 +17,6 @@
 #ifndef ClOcK
 #define ClOcK
 
-void print(String output);
-void print(String output, int constructor_arg, String fin);
 
 
 bool Flip(bool input);

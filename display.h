@@ -23,16 +23,26 @@ class Display
 {
 	public:
 	Display();
+	Display(String line_one, String line_two);	
 	
 	protected:
 	
-	String lineOne;
-	String lineTwo;
+	//String lineOne;
+	//String lineTwo;
+	
+	char lineOne[display_width];
+	char lineTwo[display_width];	
+	
 	// we'll just trim anything above 16 chars off when we print
 	// if you wrote to past 16, it aint my problem
 	
 	public:
 	
+	String getLine(short line_number);
+	
+	void printToLine(short line_number, short startPoint, String input);
+	
+	~Display();
 };
 
 
