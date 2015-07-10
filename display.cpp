@@ -32,14 +32,21 @@ Display::Display(String line_one, String line_two)
 	}
 }
 
+
 String Display::getLine(short line_number)
 {
-	String output;
+	String output = "                ";
 	if(line_number == 1)
-	{	output = std::string(lineOne);
+	{	
+		for(int cy = 0; cy != 16; ++cy)
+		{	output[cy] = lineOne[cy];
+		}
+		//output[0] = 'y';
 	}
 	else if(line_number == 2)
-	{	output = std::string(lineTwo);
+	{	for(int cy = 0; cy != 16; ++cy)
+		{	output[cy] = lineTwo[cy];
+		}
 	}
 	else
 	{	print("line number inaccessible");

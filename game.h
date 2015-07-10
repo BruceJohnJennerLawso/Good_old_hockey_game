@@ -10,10 +10,13 @@
 //#include "Source.cpp"
 
 #include "clock.h"
+#include "display.h"
 
 
 #ifndef gAmE
 #define gAmE
+
+//class Display;
 
 class Game
 {	public:
@@ -46,6 +49,7 @@ class Game
 	
 	bool inOvertime();
 	void Update(seconds deltat);
+	void Update(seconds deltat, Display &display);	
 	
 	bool newOvertime();
 	// use return value to catch any "cant allocate more memory"

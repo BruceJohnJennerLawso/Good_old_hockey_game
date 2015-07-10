@@ -115,6 +115,19 @@ void Game::Update(seconds deltat)
 	}
 }
 
+void Game::Update(seconds deltat, Display &display)
+{
+	this->Update(deltat);
+	
+	display.printToLine(1, 0, "HOME");
+	display.printToLine(1, 6, this->getClockOutput());
+	display.printToLine(1, 12, "AWAY");
+	
+	display.printToLine(2, 0, this->getHomeScore());
+	display.printToLine(2, 7, this->getCurrentPeriod());
+	display.printToLine(2, 14, this->getAwayScore());
+}
+
 bool Game::newOvertime()
 {	
 	print("starting creation of new overtime (new Period[] next)");
