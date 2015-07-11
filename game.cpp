@@ -222,6 +222,6 @@ void Game::gameOver()
 }
 
 Game::~Game()
-{
+{	delete periods;
 }
 

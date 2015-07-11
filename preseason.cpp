@@ -102,6 +102,10 @@ int main()
 		window.draw(line2);		
 		window.display();
 	}
+	print("calling destructor for this object");
+	goodOldHockey.~Game();
+	print("finished destructor for this object");
+	
 }
 
 #endif
