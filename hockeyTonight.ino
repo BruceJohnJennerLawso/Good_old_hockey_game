@@ -1,10 +1,9 @@
-/*********************
-hockeyTonight.pde
-
-Testing out the time clock structures defined in game.hpp and
-up. Not a full demo, as more components will need to be added
-before the project is truly done
-**********************/
+////////////////////////////////////////////////////////////////////////////////
+// hockeyTonight.pde ///////////////////////////////////////////////////////////
+// Testing out the time clock structures defined in game.hpp and up. Not a /////
+// full demo, as more components will need to be added before the project is ///
+// truly done //////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
 // include the library code:
 #include <Wire.h>
@@ -12,6 +11,7 @@ before the project is truly done
 #include <Adafruit_RGBLCDShield.h>
 #include <clock.h>
 #include <game.h>
+#include <display.h>
 
 
 // The shield uses the I2C SCL and SDA pins. On classic Arduinos
@@ -69,6 +69,7 @@ Game hockeyGame(5);
 
 // I think its because the original clock that came with the game used
 // 5 min long periods
+Display lcdDisplay();
 
 float deltat = 0;
 float timeElapsed = 0;
@@ -78,13 +79,13 @@ void loop()
 {
 	hockeyGame.Update(deltat);
 
-        int homeScore = hockeyGame.getHomeScore();
-        int awayScore = hockeyGame.getAwayScore();  
-        int period = hockeyGame.getCurrentPeriod();      
+	int homeScore = hockeyGame.getHomeScore();
+	int awayScore = hockeyGame.getAwayScore();  
+	int period = hockeyGame.getCurrentPeriod();      
 
 	lcd.setCursor(0,0);
 	lcd.print("HOME");
-
+	
 	lcd.setCursor(6,0);
 	lcd.print(hockeyGame.getClockOutput());
 	
@@ -99,12 +100,6 @@ void loop()
 
 	lcd.setCursor(14,1);
 	lcd.print(awayScore);
-
-	// set the cursor to column 0, line 1
-	// (note: line 1 is the second row, since counting begins with 0):
-	//lcd.setCursor(0, 1);
-	// print the number of seconds since reset:
-	//lcd.print(millis()/1000);
 
 	uint8_t buttons = lcd.readButtons();
 

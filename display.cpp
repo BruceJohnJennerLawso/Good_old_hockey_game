@@ -78,7 +78,7 @@ void Display::clearDisplay()
 
 void Display::printToLine(short line_number, short startPoint, String input)
 {
-	#ifdef PRESEASON
+	//#ifdef PRESEASON
 	
 	
 	if(line_number == 1)
@@ -101,10 +101,10 @@ void Display::printToLine(short line_number, short startPoint, String input)
 		print("line number inaccessible");
 	}
 	
-	#else
+	//#else
 
 	
-	#endif
+	//#endif
 
 	
 }
@@ -125,9 +125,12 @@ String getStringAtInt(int input)
 
 
 void Display::printToLine(short line_number, short startPoint, int input)
-{
-	#ifdef PRESEASON
+{	
 	printToLine(line_number, startPoint, getStringAtInt(input));
+	
+	#ifdef PRESEASON
+	
+	
 	#else
 
 	
