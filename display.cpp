@@ -11,7 +11,9 @@
 #include "display.h"
 
 #ifdef PRESEASON
-	#include <iostream>
+	
+#include <iostream>
+
 #endif
 
 Display::Display()
@@ -117,6 +119,8 @@ String getStringAtInt(int input)
 	output = std::to_string(input);
 	
 	#else
+	
+	output = "foo";
 	
 	#endif
 	
