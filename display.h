@@ -19,6 +19,8 @@
 //#define display_rows 2
 // maybe some more preprocessor stuff, this is too complicated for now
 
+#define clear_character '-'
+
 class Display
 {
 	public:
@@ -37,6 +39,10 @@ class Display
 	// if you wrote to past 16, it aint my problem
 	
 	public:
+	
+	
+	void clearLine(short line_number);
+	void clearDisplay();
 	
 	String getLine(short line_number);
 	

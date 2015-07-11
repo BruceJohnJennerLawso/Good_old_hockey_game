@@ -17,8 +17,8 @@
 Display::Display()
 {
 	for(int cy = 0; cy != 16; ++cy)
-	{	lineOne[cy] = '-';
-		lineTwo[cy] = '-';	
+	{	lineOne[cy] = clear_character;
+		lineTwo[cy] = clear_character;	
 	}
 }
 
@@ -55,6 +55,25 @@ String Display::getLine(short line_number)
 	//print("getLine is returning");
 	//print(output);
 	return output;
+}
+
+void Display::clearLine(short line_number)
+{	if((line_number == 2)||(line_number ==1))
+	{ 
+		for(int cy = 0; cy != 16; ++cy)
+		{	if(line_number == 1)
+			{	lineOne[cy] = clear_character;
+			}	
+			else if(line_number == 2)
+			{	lineTwo[cy] = clear_character;
+			}	
+		}
+	}
+}
+
+void Display::clearDisplay()
+{	this->clearLine(1);
+	this->clearLine(2);
 }
 
 void Display::printToLine(short line_number, short startPoint, String input)
