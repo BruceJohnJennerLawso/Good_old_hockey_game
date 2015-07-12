@@ -125,7 +125,12 @@ void Game::Update(seconds deltat, Display &display)
 	
 	display.printToLine(2, 0, this->getHomeScore());
 	display.printToLine(2, 7, this->getCurrentPeriod());
-	display.printToLine(2, 14, this->getAwayScore());
+	if(this->getAwayScore() >= 10)
+	{	display.printToLine(2, 14, this->getAwayScore());
+	}
+	else
+	{	display.printToLine(2, 15, this->getAwayScore());
+	}
 }
 
 bool Game::newOvertime()

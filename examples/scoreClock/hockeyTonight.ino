@@ -69,7 +69,7 @@ Game hockeyGame(5);
 
 // I think its because the original clock that came with the game used
 // 5 min long periods
-Display lcdDisplay();
+Display lcdDisplay;
 
 float deltat = 0;
 float timeElapsed = 0;
@@ -77,30 +77,6 @@ float timeElapsed = 0;
 uint8_t i=0;
 void loop()
 {
-	hockeyGame.Update(deltat);
-
-	int homeScore = hockeyGame.getHomeScore();
-	int awayScore = hockeyGame.getAwayScore();  
-	int period = hockeyGame.getCurrentPeriod();      
-
-	lcd.setCursor(0,0);
-	lcd.print("HOME");
-	
-	lcd.setCursor(6,0);
-	lcd.print(hockeyGame.getClockOutput());
-	
-	lcd.setCursor(12, 0);
-	lcd.print("AWAY");
-	
-	lcd.setCursor(0,1);
-	lcd.print(homeScore);
-
-	lcd.setCursor(7,1);
-	lcd.print(period);
-
-	lcd.setCursor(14,1);
-	lcd.print(awayScore);
-
 	uint8_t buttons = lcd.readButtons();
 
 	if (buttons)
@@ -139,6 +115,16 @@ void loop()
 			//lcd.print("Toggle");
 		}
 	}
+
+	hockeyGame.Update(deltat, lcdDisplay);
+
+ 	lcd.setCursor(0,0);
+	lcd.print(lcdDisplay.getLine(1));
+
+ 	lcd.setCursor(0,1);
+	lcd.print(lcdDisplay.getLine(2));
+        
+        
 	deltat = ((millis()-timeElapsed)/1000);
 	timeElapsed = millis();
 }

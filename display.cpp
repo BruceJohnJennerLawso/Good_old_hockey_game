@@ -114,14 +114,11 @@ void Display::printToLine(short line_number, short startPoint, String input)
 String getStringAtInt(int input)
 {	
 	String output;
+	
 	#ifdef PRESEASON
-	
 	output = std::to_string(input);
-	
 	#else
-	
 	output = String(input);
-	
 	#endif
 	
 	return output;
@@ -131,15 +128,6 @@ String getStringAtInt(int input)
 void Display::printToLine(short line_number, short startPoint, int input)
 {	
 	printToLine(line_number, startPoint, getStringAtInt(input));
-	
-	#ifdef PRESEASON
-	
-	
-	#else
-
-	
-	#endif
-
 	
 }
 
