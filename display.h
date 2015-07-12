@@ -19,7 +19,7 @@
 //#define display_rows 2
 // maybe some more preprocessor stuff, this is too complicated for now
 
-#define clear_character '-'
+#define clear_character '='
 
 class Display
 {
