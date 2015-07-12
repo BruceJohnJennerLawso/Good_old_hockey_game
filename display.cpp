@@ -120,7 +120,7 @@ String getStringAtInt(int input)
 	
 	#else
 	
-	output = "foo";
+	output = String(input);
 	
 	#endif
 	
