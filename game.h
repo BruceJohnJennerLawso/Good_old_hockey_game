@@ -37,8 +37,8 @@ class Game
 	public:
 	
 	int getNumberOfPeriods();
-	int getCurrentPeriod();
-
+	//int getCurrentPeriod();
+	String getCurrentPeriod();
 	String getClockOutput();
 	#ifdef PRESEASON
 	

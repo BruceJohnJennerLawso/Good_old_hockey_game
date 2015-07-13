@@ -44,8 +44,27 @@ int Game::getNumberOfPeriods()
 {	return numberOfPeriods;
 }
 
-int Game::getCurrentPeriod()
-{	return currentPeriod;
+String Game::getCurrentPeriod()
+{	
+	if(currentPeriod <= 3)
+	{	
+		#ifdef PRESEASON
+		return std::to_string(currentPeriod);
+		#else
+		return String(currentPeriod);
+		#endif
+	}
+	else
+	{	int ot_number = currentPeriod - 3;
+		#ifdef PRESEASON
+		return String(ot_number + "OT");
+		#else
+		String output = std::to_string(ot_number);
+		output.append("OT");
+		return output;
+		#endif
+		
+	}
 }
 
 String Game::getClockOutput()
