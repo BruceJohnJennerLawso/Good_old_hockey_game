@@ -37,6 +37,7 @@ class Period
 	
 	Period(seconds init_time, int period_minutes);
 	Period(int period_minutes);
+	Period(const Period& other);
 
 
 	Period operator = (const Period p);	

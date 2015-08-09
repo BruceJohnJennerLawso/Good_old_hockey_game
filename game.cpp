@@ -13,6 +13,8 @@
 #ifdef PRESEASON
 
 #include <iostream>
+#include <exception>
+#include <cstring>
 
 #endif
 // Game Class /////////////////////////////////////////////////////////////////
@@ -38,6 +40,29 @@ currentPeriod(1)
 		
 	};
 	print("finished constructing Game::Game");
+}
+
+Game::Game(const Game& other)
+{
+	periodLength = other.periodLength;
+	periods = new Period[other.numberOfPeriods];
+	memcpy(periods, other.periods, other.numberOfPeriods);
+	gameEnded = other.gameEnded;
+	currentPeriod = other.currentPeriod;
+	
+	
+}
+
+Game& Game::operator =(const Game& other)
+{	if(this != &other)
+	{
+		periodLength = other.periodLength;
+		periods = new Period[other.numberOfPeriods];
+		memcpy(periods, other.periods, other.numberOfPeriods);
+		gameEnded = other.gameEnded;
+		currentPeriod = other.currentPeriod;
+		
+	}
 }
 
 int Game::getNumberOfPeriods()
@@ -164,6 +189,7 @@ bool Game::newOvertime()
 	{	newPeriods[cy] = periods[cy];
 	}
 	newPeriods[numberOfPeriods - 1].setPeriodTime(periodLength);
+	//delete [] periods;
 	periods = newPeriods;
 	// uhh, I think this should work...
 	return true;
@@ -246,6 +272,17 @@ void Game::gameOver()
 }
 
 Game::~Game()
-{	delete[] periods;
+{	
+	#ifdef PRESEASON
+	try
+	{	
+	#endif
+		delete[] periods;
+	#ifdef PRESEASON
+	}
+	catch(std::exception& e)
+	{	print(e.what());
+	}
+	#endif
 }
 

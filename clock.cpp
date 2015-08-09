@@ -97,6 +97,15 @@ Period::Period(int period_minutes)
 	periodEnded = false;
 }
 
+Period::Period(const Period& other)
+{	Time = other.Time;
+	homeScore = other.homeScore;
+	awayScore = other.awayScore;
+	clockRunning = other.clockRunning;
+	periodStarted = other.periodStarted;
+	periodEnded = other.periodEnded;	
+}
+
 
 Period Period::operator= (const Period p)
 {	

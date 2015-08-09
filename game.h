@@ -22,6 +22,10 @@ class Game
 {	public:
 	Game(int period_minutes);
 	
+	Game(const Game& other);
+	
+	Game& operator =(const Game& other);
+	
 	private:
 	Period * periods;
 	seconds periodLength;

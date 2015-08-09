@@ -49,7 +49,7 @@ int main()
 	line1.setPosition(0, 20);
 	line2.setPosition(0, 40);	
 	
-	sf::RenderWindow window(sf::VideoMode(600, 599), "Table Hockey Game - Preseason testing");
+	sf::RenderWindow window(sf::VideoMode(300, 100), "Table Hockey Game - Preseason testing");
 	
 	while (window.isOpen())
 	{	
