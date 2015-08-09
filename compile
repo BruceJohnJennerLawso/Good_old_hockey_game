@@ -1,5 +1,5 @@
 #!/bin/bash
 
-g++ -c -std=c++0x display.cpp clock.cpp game.cpp preseason.cpp
+g++ -c -std=c++0x display.cpp output.cpp pwm.cpp clock.cpp game.cpp preseason.cpp
 
 exit 0

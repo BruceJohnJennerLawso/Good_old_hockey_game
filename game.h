@@ -14,6 +14,7 @@
 
 #include "clock.h"
 #include "display.h"
+#include "pwm.h"
 
 class Game
 {	public:

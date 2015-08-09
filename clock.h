@@ -20,8 +20,6 @@
 bool Flip(bool input);
 
 
-typedef double seconds;
-typedef short int score;
 
 bool Equal(score team1, score team2);
 

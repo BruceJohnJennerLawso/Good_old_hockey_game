@@ -14,7 +14,7 @@
 
 pwmDriver::pwmDriver(): outputDriver()
 {	sinceSwitch = 0;
-	outputPercentage 
+	outputPercentage = 0;
 	
 }
 

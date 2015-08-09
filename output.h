@@ -21,7 +21,7 @@ class outputDriver
 	outputDriver(pin output_pin, pinstate init_state);
 	
 	protected:
-	pinState State;
+	pinstate State;
 	pin pinNumber;
 	
 	public:

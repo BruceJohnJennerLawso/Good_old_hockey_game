@@ -18,6 +18,8 @@
 
 #define PRESEASON
 
+typedef double seconds;
+typedef short int score;
 
 
 typedef short pin;
