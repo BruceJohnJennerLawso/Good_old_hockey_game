@@ -19,6 +19,13 @@
 #define PRESEASON
 
 
+
+typedef short pin;
+
+typedef float percent;
+
+enum pinstate{high, low};
+
 #ifdef PRESEASON
 
 	#include <string>

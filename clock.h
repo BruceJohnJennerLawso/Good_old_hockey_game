@@ -10,13 +10,11 @@
 //#include "Headers.hpp"
 //#include "Source.cpp"
 #include <stdlib.h>
-// why malloc why
-
-#include "environment.h"
 
 #ifndef ClOcK
 #define ClOcK
 
+#include "environment.h"
 
 
 bool Flip(bool input);

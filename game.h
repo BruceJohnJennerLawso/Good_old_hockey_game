@@ -8,15 +8,12 @@
 
 //#include "Headers.hpp"
 //#include "Source.cpp"
-
-#include "clock.h"
-#include "display.h"
-
-
 #ifndef gAmE
 #define gAmE
 
-//class Display;
+
+#include "clock.h"
+#include "display.h"
 
 class Game
 {	public:

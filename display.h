@@ -8,11 +8,12 @@
 
 //#include "Headers.hpp"
 //#include "Source.cpp"
+#ifndef DiSpLaY
+#define DiSpLaY
+
 
 #include "environment.h"
 
-#ifndef DiSpLaY
-#define DiSpLaY
 
 #define display_width 16
 // make this generic in case its on a different lcd screen or something
